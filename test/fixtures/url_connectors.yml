@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  long_url: www.example.com
-  short_url: www.example.com
+  long_url: www.example.com/long_url_one
+  short_url: www.example.com/HRYSMV
+  user: one
 
 two:
-  long_url: www.example.com
-  short_url: www.example.com
+  long_url: www.example.com/long_url_two
+  short_url: www.example.com/XMVHEL
+  user: two

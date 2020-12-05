@@ -2,12 +2,21 @@ require 'test_helper'
 
 class UrlConnectorsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @current_user = users(:one)
     @url_connector = url_connectors(:one)
+    @unauthorised_url_connector = url_connectors(:two)
+    sign_in @current_user
   end
 
   test "should get index" do
     get url_connectors_url
     assert_response :success
+  end
+
+  test "should only show authorised urls on index" do
+    get url_connectors_url
+    assert_select 'td', text: @url_connector.short_url, count: 1
+    assert_select 'td', text: @unauthorised_url_connector.short_url, count: 0
   end
 
   test "should get new" do
@@ -20,22 +29,15 @@ class UrlConnectorsControllerTest < ActionDispatch::IntegrationTest
       post url_connectors_url, params: { url_connector: { long_url: @url_connector.long_url, short_url: @url_connector.short_url } }
     end
 
-    assert_redirected_to url_connector_url(UrlConnector.last)
+    assert_redirected_to url_connectors_url
   end
 
-  test "should show url_connector" do
-    get url_connector_url(@url_connector)
-    assert_response :success
-  end
+  test "created url_connector should belong to the current user" do
+    assert_difference('UrlConnector.count') do
+      post url_connectors_url, params: { url_connector: { long_url: @url_connector.long_url, short_url: @url_connector.short_url } }
+    end
 
-  test "should get edit" do
-    get edit_url_connector_url(@url_connector)
-    assert_response :success
-  end
-
-  test "should update url_connector" do
-    patch url_connector_url(@url_connector), params: { url_connector: { long_url: @url_connector.long_url, short_url: @url_connector.short_url } }
-    assert_redirected_to url_connector_url(@url_connector)
+    assert_equal @current_user, UrlConnector.last.user
   end
 
   test "should destroy url_connector" do
@@ -44,5 +46,14 @@ class UrlConnectorsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to url_connectors_url
+  end
+
+  test "should not destroy url_connector if unauthorised" do
+    assert_no_difference('UrlConnector.count') do
+      delete url_connector_url(@unauthorised_url_connector)
+    end
+
+    assert_redirected_to url_connectors_url
+    assert_equal 'URL could not be found.', flash.alert
   end
 end
