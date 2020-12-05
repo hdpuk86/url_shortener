@@ -1,4 +1,5 @@
 class UrlConnectorsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :connector
   before_action :set_url_connector, only: :destroy
 
   # GET /url_connectors
@@ -25,6 +26,17 @@ class UrlConnectorsController < ApplicationController
   def destroy
     @url_connector.destroy
     redirect_to url_connectors_url, notice: 'Url connector was successfully destroyed.'
+  end
+
+  # GET /R_ANDM
+  def connector
+    short_url_ref = root_url + params[:short_url_ref]
+    url_connector = UrlConnector.find_by(short_url: short_url_ref)
+    if url_connector.present?
+      redirect_to url_connector.long_url, status: 301
+    else
+      redirect_to root_url
+    end
   end
 
   private

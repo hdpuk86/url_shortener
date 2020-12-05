@@ -2,10 +2,10 @@
 
 one:
   long_url: 'http://www.example.com/long_url_one'
-  short_url: 'www.example.com/HRYSMV'
+  short_url: 'http://localhost:3000/HRYSMV'
   user: one
 
 two:
   long_url: 'https://www.example.com/long_url_two'
-  short_url: 'www.example.com/XMVHEL'
+  short_url: 'http://localhost:3000/XMVHEL'
   user: two

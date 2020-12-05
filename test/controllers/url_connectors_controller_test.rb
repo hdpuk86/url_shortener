@@ -60,4 +60,25 @@ class UrlConnectorsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to url_connectors_url
     assert_equal 'URL could not be found.', flash.alert
   end
+
+  test "connector should redirect to long_url" do
+    get @url_connector.short_url
+
+    assert_redirected_to @url_connector.long_url
+    assert_equal '301', response.code
+  end
+
+  test "connector should redirect to root_url if short_url not found" do
+    get @url_connector.short_url + 'nonsense'
+
+    assert_redirected_to root_url
+  end
+
+  test "connector should be publicly available" do
+    sign_out @current_user
+    get @url_connector.short_url
+
+    assert_redirected_to @url_connector.long_url
+    assert_equal '301', response.code
+  end
 end

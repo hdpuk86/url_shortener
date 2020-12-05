@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :url_connectors
+  get '/:short_url_ref', to: 'url_connectors#connector'
 
   root to: 'url_connectors#index'
 end
