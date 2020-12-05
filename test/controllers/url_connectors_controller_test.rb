@@ -26,15 +26,19 @@ class UrlConnectorsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create url_connector" do
     assert_difference('UrlConnector.count') do
-      post url_connectors_url, params: { url_connector: { long_url: @url_connector.long_url, short_url: @url_connector.short_url } }
+      post url_connectors_url, params: { url_connector: { long_url: 'http://www.example.com/test' } }
     end
 
+    created_url_connector = UrlConnector.last
+
+    assert_equal 'http://www.example.com/test', created_url_connector.long_url
+    assert_not_nil created_url_connector.short_url
     assert_redirected_to url_connectors_url
   end
 
   test "created url_connector should belong to the current user" do
     assert_difference('UrlConnector.count') do
-      post url_connectors_url, params: { url_connector: { long_url: @url_connector.long_url, short_url: @url_connector.short_url } }
+      post url_connectors_url, params: { url_connector: { long_url: 'http://www.example.com/test' } }
     end
 
     assert_equal @current_user, UrlConnector.last.user

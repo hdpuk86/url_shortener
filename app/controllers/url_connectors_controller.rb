@@ -36,6 +36,6 @@ class UrlConnectorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def url_connector_params
-      params.require(:url_connector).permit(:long_url, :short_url)
+      params.require(:url_connector).permit(:long_url)
     end
 end
