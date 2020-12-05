@@ -1,0 +1,27 @@
+<%= form_with(model: url_connector, local: true) do |form| %>
+  <% if url_connector.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(url_connector.errors.count, "error") %> prohibited this url_connector from being saved:</h2>
+
+      <ul>
+        <% url_connector.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :long_url %>
+    <%= form.text_field :long_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :short_url %>
+    <%= form.text_field :short_url %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
