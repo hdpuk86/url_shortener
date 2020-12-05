@@ -7,6 +7,7 @@
     <tr>
       <th>Long url</th>
       <th>Short url</th>
+      <th>Visits</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= url_connector.long_url %></td>
         <td><%= url_connector.short_url %></td>
+        <td><%= url_connector.visit_count %></td>
         <td><%= link_to 'Show', url_connector %></td>
         <td><%= link_to 'Edit', edit_url_connector_path(url_connector) %></td>
         <td><%= link_to 'Destroy', url_connector, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -81,4 +81,11 @@ class UrlConnectorsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to @url_connector.long_url
     assert_equal '301', response.code
   end
+
+  test "connector should count visits" do
+    assert_difference('@url_connector.visit_count', 1) do
+      get @url_connector.short_url
+      @url_connector.reload
+    end
+  end
 end

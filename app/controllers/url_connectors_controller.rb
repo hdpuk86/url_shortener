@@ -31,8 +31,9 @@ class UrlConnectorsController < ApplicationController
   # GET /R_ANDM
   def connector
     short_url_ref = root_url + params[:short_url_ref]
+    # find_by protects from sql injections: https://guides.rubyonrails.org/security.html#sql-injection
     url_connector = UrlConnector.find_by(short_url: short_url_ref)
-    if url_connector.present?
+    if url_connector.present? && url_connector.increment!(:visit_count)
       redirect_to url_connector.long_url, status: 301
     else
       redirect_to root_url
