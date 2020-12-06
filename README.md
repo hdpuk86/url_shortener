@@ -1,24 +1,23 @@
-# README
+# URL Shortener
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Ruby on Rails application for generating short URLs. Uses Devise for user authentication. The database is SQLite3.
 
-Things you may want to cover:
+Users can sign up and log in to create short URLs. The user's dashboard shows how many times each short URL they've created has been used.
 
-* Ruby version
+---
 
-* System dependencies
+## Setting Up
 
-* Configuration
+### Versions:
+ - Ruby 2.5.1
+ - Rails 6.0.3.3
 
-* Database creation
+### Running the application:
 
-* Database initialization
+`git clone git@github.com:hdpuk86/url_shortener.git`
 
-* How to run the test suite
+`bundle install`
 
-* Services (job queues, cache servers, search engines, etc.)
+`yarn install`
 
-* Deployment instructions
-
-* ...
+`rails s`
