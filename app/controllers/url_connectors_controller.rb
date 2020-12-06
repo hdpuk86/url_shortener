@@ -4,11 +4,7 @@ class UrlConnectorsController < ApplicationController
 
   # GET /url_connectors
   def index
-    @url_connectors = current_user.url_connectors
-  end
-
-  # GET /url_connectors/new
-  def new
+    @url_connectors = current_user.url_connectors.where.not(id: nil)
     @url_connector = current_user.url_connectors.build
   end
 
@@ -18,7 +14,7 @@ class UrlConnectorsController < ApplicationController
     if @url_connector.save
       redirect_to url_connectors_url, notice: 'Url connector was successfully created.'
     else
-      render :new
+      render :index
     end
   end
 

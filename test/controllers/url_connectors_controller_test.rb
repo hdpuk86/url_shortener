@@ -15,13 +15,8 @@ class UrlConnectorsControllerTest < ActionDispatch::IntegrationTest
 
   test "should only show authorised urls on index" do
     get url_connectors_url
-    assert_select 'td', text: @url_connector.short_url, count: 1
-    assert_select 'td', text: @unauthorised_url_connector.short_url, count: 0
-  end
-
-  test "should get new" do
-    get new_url_connector_url
-    assert_response :success
+    assert_select 'a', text: @url_connector.short_url, count: 1
+    assert_select 'a', text: @unauthorised_url_connector.short_url, count: 0
   end
 
   test "should create url_connector" do

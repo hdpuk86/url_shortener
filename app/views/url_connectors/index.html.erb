@@ -1,31 +1,24 @@
-<p id="notice"><%= notice %></p>
+<h2 class="text-center my-3">Create a Short URL</h2>
 
-<h1>Url Connectors</h1>
+<%= form_with(model: @url_connector, local: true) do |form| %>
+  <% if @url_connector.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@url_connector.errors.count, "error") %> prohibited this url_connector from being saved:</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Long url</th>
-      <th>Short url</th>
-      <th>Visits</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <ul>
+        <% @url_connector.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <tbody>
-    <% @url_connectors.each do |url_connector| %>
-      <tr>
-        <td><%= url_connector.long_url %></td>
-        <td><%= url_connector.short_url %></td>
-        <td><%= url_connector.visit_count %></td>
-        <td><%= link_to 'Show', url_connector %></td>
-        <td><%= link_to 'Edit', edit_url_connector_path(url_connector) %></td>
-        <td><%= link_to 'Destroy', url_connector, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="input-group mb-3">
+    <%= form.text_field :long_url, class: 'form-control', placeholder: "Paste long URL here" %>
+    <div class="input-group-append">
+      <%= form.submit 'Shorten', class:"input-group-text btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
 
-<br>
-
-<%= link_to 'New Url Connector', new_url_connector_path %>
+<%= render partial: 'url_connector', collection: @url_connectors %>
