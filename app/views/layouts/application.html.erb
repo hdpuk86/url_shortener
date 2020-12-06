@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <title>UrlShortener</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Url Shortener</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,12 +12,14 @@
   </head>
 
   <body>
-    <h1>URL Shortener</h1>
-    <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-primary' if current_user.present? %>
+    <div class="container">
+      <h1>URL Shortener</h1>
+      <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-primary' if current_user.present? %>
 
-    <p id="notice" class="notice"><%= notice %></p>
-    <p id="alert" class="alert"><%= alert %></p>
+      <p id="notice" class="notice"><%= notice %></p>
+      <p id="alert" class="alert"><%= alert %></p>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -12,5 +12,8 @@
  *
  */
 
-@import "bootstrap";
 @import "./global.scss";
+
+$link-decoration: none;
+
+@import "bootstrap";

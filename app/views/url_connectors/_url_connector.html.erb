@@ -1,0 +1,13 @@
+<ul class="list-group my-3">
+  <li class="list-group-item border-bottom-0 text-muted">
+    <%= url_connector.long_url %>
+  </li>
+
+  <li class="list-group-item d-flex flex-wrap justify-content-between">
+    <%= link_to url_connector.short_url, url_connector.short_url %>
+
+    <span>Visited: <%= url_connector.visit_count %></span>
+
+    <%= button_to 'Delete', url_connector, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
+  </li>
+</ul>
