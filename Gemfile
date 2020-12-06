@@ -28,7 +28,9 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'bootstrap', '~> 5.0.0.alpha3'
 gem 'devise'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'pry-byebug'
