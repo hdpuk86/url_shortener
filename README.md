@@ -21,3 +21,10 @@ Users can sign up and log in to create short URLs. The user's dashboard shows ho
 `yarn install`
 
 `rails s`
+
+## Improvements Needed
+
+- Long URL validation needs refinement
+- Mailers have not been checked
+- Devise views have no styling
+- All styling is basic bootstrap
